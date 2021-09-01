@@ -1,18 +1,16 @@
-const express = require("express");
-const cors = require("cors");
-const api = express();
+const express = require('express')
+const cors = require('cors')
+const routers = require('./routers/routers.js')
 
-const port = process.env.PORT || 5000;
+const api = express()
+api.use(express.json())
+api.use(express.urlencoded({extended: true}))
+api.use(cors())
 
-api.use(express.json());
-api.use(express.urlencoded());
-api.use(cors());
+const router = express.Router()
+routers(api, router)
 
-// routes(api);
+const port = process.env.PORT || 5000
+api.listen(port, () => {})
 
-// const router = express.Router;
-// routes(api, router);
-
-api.listen(port, () => {
-    console.log("Server working on port", port)
-});
+console.log(port);
