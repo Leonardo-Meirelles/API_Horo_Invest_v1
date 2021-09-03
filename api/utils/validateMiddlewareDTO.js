@@ -2,6 +2,7 @@ const validateMiddlewareDto = (context, schema) => {
 
     return async (req, res, next) => {
 
+        //allowUnknown?
         const result = schema.validate(req[context], { abortEarly: false })
 
         if (result.error) {
@@ -11,6 +12,6 @@ const validateMiddlewareDto = (context, schema) => {
             return res.status(400).send(error)
         }
 
-        next()
+        return next()
     }
 }

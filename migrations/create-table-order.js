@@ -5,13 +5,13 @@ module.exports = {
     
     return queryInterface.createTable('order', {
 
-      order: { 
+      orderNumber: { 
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-
+//checar os types quando puxar do DB
       user: {
         allowNull: false,
         type: Sequelize.INTEGER
@@ -29,7 +29,7 @@ module.exports = {
 
       stockValue: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL
       }
 
     })
