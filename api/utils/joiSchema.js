@@ -1,12 +1,14 @@
-const joi = require('joi')
+const Joi = require('joi')
 
-const joiSchema = joi.object({
+const JoiSchema = Joi.object({
   
-    userName: joi.string(),
-    userEmail: joi.email(),
-    stockQuantity: joi.number(),
-    stockValue: joi.number(),
+    userName: Joi.string().required(),
+    userEmail: Joi.email().required(),
+    stockQuantity: Joi.number().required(),
+    stockValue: Joi.number().required(),
 
-})
+});
 
-module.exports = joiSchema
+module.exports = { 
+    JoiSchema
+}

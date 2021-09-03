@@ -4,5 +4,6 @@ module.exports = (userRouter) => {
 
     userRouter.route('/user')
         .get(userController.getUser)
+        .delete(userControler.deleteOrder)
 
 }

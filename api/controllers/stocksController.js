@@ -1,19 +1,40 @@
-const getStocks = (req, res, next) => {
+import { stocks } from '../../models/stocks';
 
-    res.send('deu certo stocks')
+const getStocks = async (req, res) => {
 
-}
+   try {
+       const result = await stocks.findAll({});
+       const finalResult = result.map( item => {
+           const { id, stockName} = item;
+           return {
+               id,
+               stockName
+           }
+       })
+       res.status(200).send(finalResult)
+   } catch(error) {
+       throw error
+   }
 
-const postStocksSell = (req, res, next) => {
+};
 
-    res.send('deu certo stocks id')
+const postStocksOrder = (req, res) => {
+
+    const {userName, userEmail, stock, quantity, stockValue} = req.body;
+    const viewModel = {
+        userName,
+        userEmail,
+        stock,
+        quantity,
+        stockValue
+    }
 
 }
 
 module.exports = {
 
     getStocks,
-    postStocksSell
+    postStocksOrder
 
 }
 
