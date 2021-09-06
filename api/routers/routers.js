@@ -1,5 +1,5 @@
 const stocksRouter = require('./routing/stocksRouter.js')
-const userRouter = require('./routing/userRouter.js')
+const userRouter = require('./routing/usersRouter.js')
 const adminRouter = require('./routing/adminRouter.js')
 
 module.exports = (api, router) => {

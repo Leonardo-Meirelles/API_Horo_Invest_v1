@@ -5,7 +5,10 @@ module.exports = (stocksRouter) => {
     stocksRouter.route('/stocks')
         .get(stocksController.getStocks)
 
+    stocksRouter.route('/stocks')
+        .post(stocksController.postStocks)
+
     stocksRouter.route('/stocks/:idstock')
-        .post(stocksController.postStocksSell)
-        
+        .post(stocksController.postStocksOrder)
+
 }

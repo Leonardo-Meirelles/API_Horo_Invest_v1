@@ -1,4 +1,4 @@
-import { order } from '../../models/order'
+const order = require('../../models/index')
 
 const getAdmin = async (req, res) => {
 
@@ -20,56 +20,56 @@ const getAdmin = async (req, res) => {
     }
 };
 
-const getByOrderNumber = async (req, res) => {
-    const { orderNumber } = req.params;
-    const result = await order.findOne({
-        where: {
-            orderNumber: req.params.orderNumber
-        }
-    });
+// const getByOrderNumber = async (req, res) => {
+//     const { orderNumber } = req.params;
+//     const result = await order.findOne({
+//         where: {
+//             orderNumber: req.params.orderNumber
+//         }
+//     });
 
-    if (!result) {
-        return res.status(404).send({
-            message: 'result not found for order number ' + orderNumber
-        })
-    }
+//     if (!result) {
+//         return res.status(404).send({
+//             message: 'result not found for order number ' + orderNumber
+//         })
+//     }
     
-    const {orderNumber, user, stock, quantity, stockValue} = result;
+//     const {orderNumber, user, stock, quantity, stockValue} = result;
 
-    return res.status(200).send({
-        orderNumber,
-        user,
-        stock,
-        quantity,
-        stockValue
-    })
+//     return res.status(200).send({
+//         orderNumber,
+//         user,
+//         stock,
+//         quantity,
+//         stockValue
+//     })
     
-};
+// };
 
-const getByStock = async (req, res) => {
-    const { stock } = req.params;
-    const result = await order.findOne({
-        where: {
-            stock: req.params.stock
-        }
-    });
+// const getByStock = async (req, res) => {
+//     const { stock } = req.params;
+//     const result = await order.findOne({
+//         where: {
+//             stock: req.params.stock
+//         }
+//     });
 
-    if (!result) {
-        return res.status(404).send({
-            message: 'result not found for stock ' + stock
-        })
-    }
+//     if (!result) {
+//         return res.status(404).send({
+//             message: 'result not found for stock ' + stock
+//         })
+//     }
     
-    const {orderNumber, user, stock, quantity, stockValue} = result;
+//     const {orderNumber, user, stock, quantity, stockValue} = result;
 
-    return res.status(200).send({
-        orderNumber,
-        user,
-        stock,
-        quantity,
-        stockValue
-    })
-};
+//     return res.status(200).send({
+//         orderNumber,
+//         user,
+//         stock,
+//         quantity,
+//         stockValue
+//     })
+// };
 
 const deleteOrder = (req, res) => {
     res.status(200).send({
@@ -80,8 +80,8 @@ const deleteOrder = (req, res) => {
 module.exports = {
 
     getAdmin,
-    getByOrderNumber,
-    getByStock,
+    // getByOrderNumber,
+    // getByStock,
     deleteOrder
     
 }
