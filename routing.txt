@@ -1,0 +1,24 @@
+/stocks {
+
+    .get (working) => This will SELECT the ID and the NAME of the stock, FROM the STOCKS table
+
+    .post (working) => This will INSERT the NAME of the stock, INTO the STOCKS table
+}
+
+/stocks/:idstock/order {
+
+    .post (working) => This will INSERT the USER info (userName and userEmail) INTO the USERS table
+             and then the ORDER info (user info + stockId, orderQuantity and orderPrice) INTO the ORDERS table
+}
+
+/orders {
+
+    .get (working) => This will SELECT the ORDER info (id, userId, stockId, orderQuantity and orderPrice) 
+            FROM the ORDERS table
+
+}
+
+
+
+
+

@@ -2,34 +2,29 @@ module.exports = (sequelize, DataTypes) => {
 
     const order = sequelize.define('ordersModel',
         {
-            orderNumber: {
+            id: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true
             },
 
-            userName: {
-                type: DataTypes.TEXT,
-                allowNull: false
-            },
-
-            userEmail: {
-                type: DataTypes.TEXT,
-                allowNull: false
-            },
-
-            stockName: {
-                type: DataTypes.TEXT,
-                allowNull: false
-            },
-
-            stockQuantity: {
+            userId: {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
 
-            stockValue: {
+            stockId: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+
+            orderQuantity: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+
+            orderPrice: {
                 type: DataTypes.DECIMAL(10, 2),
                 allowNull: false
             }
@@ -41,7 +36,20 @@ module.exports = (sequelize, DataTypes) => {
         }
     )
 
-        
+    order.associate = (db) => {
+
+        order.belongsTo(db.usersModel, {
+            foreignKey: 'userId',
+            as: 'user'
+        })
+
+        order.belongsTo(db.stocksModel, {
+            foreignKey: 'stockId',
+            as: 'stock'
+        }) 
+
+    }
+
 
     return order
 }

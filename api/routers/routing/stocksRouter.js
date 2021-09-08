@@ -8,7 +8,7 @@ module.exports = (stocksRouter) => {
     stocksRouter.route('/stocks')
         .post(stocksController.postStocks)
 
-    stocksRouter.route('/stocks/:idstock')
-        .post(stocksController.postStocksOrder)
+    stocksRouter.route('/stocks/:idstock/order')
+        .post(stocksController.postOrder)
 
 }

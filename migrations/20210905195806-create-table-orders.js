@@ -5,38 +5,37 @@ module.exports = {
 
     return queryInterface.createTable('orders', {
 
-      order_number: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      //checar os types quando puxar do DB
-      user_name: {
+      
+      user_id: {
         allowNull: false,
-        type: Sequelize.TEXT,
+        type: Sequelize.INTEGER,
         references: {
-          model: 'users', //nome da tabela
-          key: 'user_name' //campo que eu quero pegar
+          model: 'users',
+          key: 'id'
         }
       },
 
-      user_email: { //tirar isso
+      stock_id: {
         allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'stocks',
+          key: 'id'
+        }
       },
 
-      stock_name: {
-        allowNull: false,
-        type: Sequelize.TEXT
-      },
-
-      stock_quantity: {
+      order_quantity: { //mudar nome para nao gerar confusao com a tabela stock
         allowNull: false,
         type: Sequelize.INTEGER,
       },
 
-      stock_value: { //trocar pra price
+      order_price: {
         allowNull: false,
         type: Sequelize.DECIMAL(10,2)
       },

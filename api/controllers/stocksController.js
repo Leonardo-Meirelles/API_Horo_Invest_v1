@@ -1,4 +1,4 @@
-const { stocksModel, ordersModel } = require('../../models/index')
+const { stocksModel, usersModel, ordersModel } = require('../../models/index')
 
 // This will SELECT the id and the name of the stock, FROM the STOCKS table
 const getStocks = async (req, res, next) => {
@@ -26,41 +26,44 @@ const postStocks = async (req, res, next) => {
 
     const { stockName } = req.body
 
-    const postStocksModel = {
-
-        stockName
-
-    }
-
     const stock = await stocksModel.create({ stockName })
 
     return res.json(stock)
 }
 
-// This will INSERT order info, INTO the ORDERS table
-const postStocksOrder = async (req, res, next) => {
+// This will INSERT the USER info (userName and userEmail) INTO the USERS table
+// and then the ORDER info (user info + stockId, orderQuantity and orderPrice) INTO the ORDERS table
+const postOrder = async (req, res, next) => {
 
-    const { userName, userEmail, stockName, stockQuantity, stockValue } = req.body
+    const { idstock } = req.params
+    const { userName, userEmail, orderQuantity, orderPrice } = req.body
 
-    const postStocksOrderModel = {
-        userName,
-        userEmail,
-        stockName,
-        stockQuantity,
-        stockValue
-    }
+    const user = await usersModel.create({ userName, userEmail })
 
-    const order = await ordersModel.create({ userName, userEmail, stockName, stockQuantity, stockValue })
+    const findUser = await usersModel.findOne({
+        where: {
+            userName: req.body.userName
+        }
+    })
+
+    const userId = findUser.id
+    const stockId = parseInt(idstock)
+
+    const order = await ordersModel.create({
+        userId,
+        stockId,
+        orderQuantity,
+        orderPrice
+    })
 
     return res.json(order)
-
 }
 
 module.exports = {
 
     getStocks,
     postStocks,
-    postStocksOrder
+    postOrder
 
 }
 

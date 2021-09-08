@@ -18,7 +18,16 @@ module.exports = (sequelize, DataTypes) => {
         {
             tableName: 'stocks',
 
+        }
+    )
+
+    stocks.associate = (db) => {
+
+        stocks.hasMany(db.ordersModel, {
+            foreignKey: 'stockId',
+            as: 'order'
         })
+    }
 
     return stocks
 }
