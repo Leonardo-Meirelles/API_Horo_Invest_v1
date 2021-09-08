@@ -1,6 +1,6 @@
-import { user } from '../../models/user'
+const user = require('../../models/index')
 
-const getUser = (req, res, next) => {
+const getUser = async (req, res, next) => {
 
     try{
         const result = await user.findAll({});

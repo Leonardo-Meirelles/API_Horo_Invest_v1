@@ -1,12 +1,14 @@
-const stocksRouter = require('./routing/stocksRouter.js')
-const userRouter = require('./routing/userRouter.js')
-const adminRouter = require('./routing/adminRouter.js')
+const stocksRouter = require('./routing/stocksRouter')
+const usersRouter = require('./routing/usersRouter')
+const adminRouter = require('./routing/adminRouter')
+const ordersRouter = require('./routing/ordersRouter')
 
 module.exports = (api, router) => {
     
     stocksRouter(router)
-    userRouter(router)
+    usersRouter(router)
     adminRouter(router)
+    ordersRouter(router)
 
     api.use('', router)
 

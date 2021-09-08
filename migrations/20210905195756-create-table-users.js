@@ -2,42 +2,41 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    
-    return queryInterface.createTable('order', {
 
-      orderNumber: { 
+    return queryInterface.createTable('users', {
+
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-//checar os types quando puxar do DB
-      user: {
+
+      user_name: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.TEXT
       },
 
-      stock: {
+      user_email: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.TEXT
       },
 
-      quantity: {
+      created_at: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.DATE
       },
 
-      stockValue: {
+      updated_at: {
         allowNull: false,
-        type: Sequelize.DECIMAL
+        type: Sequelize.DATE
       }
 
     })
   },
 
   down: async (queryInterface, Sequelize) => {
-    
-    return queryInterface.dropTable('order')
 
+    return queryInterface.dropTable('users')
   }
-}
+};
