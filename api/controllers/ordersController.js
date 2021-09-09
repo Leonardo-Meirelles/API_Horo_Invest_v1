@@ -33,6 +33,7 @@ const getOrders = async (req, res, next) => {
         res.status(200).send(returnAllOrders)
 
     } catch (error) {
+        
         throw error
     }
 }

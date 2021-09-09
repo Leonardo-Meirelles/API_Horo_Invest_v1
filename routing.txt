@@ -15,9 +15,19 @@
 
     .get (working) => This will SELECT the ORDER info (id, userId, stockId, orderQuantity and orderPrice) 
             FROM the ORDERS table
-
 }
 
+/users {
+
+    .get (working) => This will SELECT all the USERS (id, userName and userEmail) 
+                      FROM the USERS table
+}
+
+/user {
+
+    .get (working) => This will SELECT the USER info (userName, userEmail and order) of one user, using his email,
+                      FROM the USERS table
+}
 
 
 

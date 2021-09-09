@@ -1,13 +1,13 @@
 const { stocksModel, usersModel, ordersModel } = require('../../models/index')
 
-// This will SELECT the id and the name of the stock, FROM the STOCKS table
 const getStocks = async (req, res, next) => {
-
     try {
         const findAllStocks = await stocksModel.findAll({})
 
         const returnAllStocks = findAllStocks.map(item => {
+
             const { id, stockName } = item
+
             return {
                 id,
                 stockName
@@ -21,42 +21,76 @@ const getStocks = async (req, res, next) => {
     }
 }
 
-// This will INSERT the name of the stock, INTO the STOCKS table
 const postStocks = async (req, res, next) => {
 
     const { stockName } = req.body
 
-    const stock = await stocksModel.create({ stockName })
+    const findStock = await stocksModel.findOne({
+        where: {
+            stockName: stockName
+        }
+    })
 
-    return res.json(stock)
+    if (!findStock) {
+
+        const stock = await stocksModel.create({ stockName })
+
+        return res.status(200).send({
+            message: 'Stock successfully created.'
+        })
+    }
+
+    return res.status(400).send({
+        message: 'This stock is already in the system.'
+    })
 }
 
-// This will INSERT the USER info (userName and userEmail) INTO the USERS table
-// and then the ORDER info (user info + stockId, orderQuantity and orderPrice) INTO the ORDERS table
 const postOrder = async (req, res, next) => {
 
     const { idstock } = req.params
     const { userName, userEmail, orderQuantity, orderPrice } = req.body
 
-    const user = await usersModel.create({ userName, userEmail })
-
-    const findUser = await usersModel.findOne({
+    const findStock = await stocksModel.findOne({
         where: {
-            userName: req.body.userName
+            id: idstock
         }
     })
 
-    const userId = findUser.id
-    const stockId = parseInt(idstock)
+    if (!findStock) {
+
+        return res.status(404).send({
+            message: 'Stock not found.'
+        })
+    }
+
+    const findUser = await usersModel.findOne({
+        where: {
+            userEmail: userEmail
+        }
+    })
+
+    let user
+
+    if (!findUser) {
+
+        user = await usersModel.create({ userName, userEmail })
+
+    } else {
+
+        user = findUser
+
+    }
 
     const order = await ordersModel.create({
-        userId,
-        stockId,
+        userId: user.id,
+        stockId: findStock.id,
         orderQuantity,
         orderPrice
     })
 
-    return res.json(order)
+    return res.status(200).send({
+        message: 'Order successfully created.'
+    })
 }
 
 module.exports = {
