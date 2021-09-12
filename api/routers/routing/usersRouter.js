@@ -7,7 +7,5 @@ module.exports = (userRouter) => {
 
     userRouter.route('/user')
         .get(usersController.getUserByEmail)
-        
-        // .delete(userControler.deleteOrder)
 
 }

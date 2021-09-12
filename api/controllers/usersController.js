@@ -50,18 +50,11 @@ const getUserByEmail = async (req, res) => {
         userEmail,
         order
     })
-};
-//!falta fazer
-const deleteOrder = (req, res) => {
-    res.status(200).send({
-        ...req.params
-    })
-};
+}
 
 module.exports = {
 
     getUsers,
     getUserByEmail,
-    deleteOrder
 
 }
