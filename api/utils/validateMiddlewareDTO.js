@@ -1,4 +1,4 @@
-const validateMiddlewareDto = (context, schema) => {
+module.exports = (context, schema) => {
 
     return async (req, res, next) => {
 
