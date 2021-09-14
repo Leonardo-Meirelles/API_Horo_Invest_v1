@@ -1,20 +1,37 @@
 var axios = require("axios").default;
 
-const stocks = ['AAPL', 'AMZN','NFLX', 'PEP']
-const get = stocks.map(e => {
+const GetStocksApi = async (stockName) => {
 
-	var options = {
+	let options = {
+		
 		method: 'GET',
-		url: `https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/${e}/financial-data`,
+		url: `https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/${stockName}/financial-data`,
 		headers: {
 			'x-rapidapi-host': 'yahoo-finance15.p.rapidapi.com',
 			'x-rapidapi-key': 'f0eb438c2cmsh13a8a0a2b744e88p17ee4cjsn8a3fc5a9f586'
 		}
-	};
-	
-	axios.request(options).then(function (response) {
-		console.log(response.data.financialData.currentPrice);
-	}).catch(function (error) {
-		console.error(error);
-	});
-})
+	}
+
+	try {
+
+		let response = await axios.request(options)
+
+		let responsePrice = response.data.financialData.currentPrice.raw
+
+		let stockDataObject = {
+
+			stockName: stockName,
+			stockPrice: responsePrice
+		}
+
+		return stockDataObject
+
+	} catch (error) {
+
+		throw error
+	}
+}
+
+module.exports = {
+	GetStocksApi
+}

@@ -1,19 +1,24 @@
 const { stocksModel, usersModel, ordersModel } = require('../../models/index')
+const stockApi = require('../services/stockApi')
 
 const getStocks = async (req, res, next) => {
     try {
         const findAllStocks = await stocksModel.findAll({})
 
-        const returnAllStocks = findAllStocks.map(item => {
+        const returnAllStocks = await Promise.all(findAllStocks.map(async item => {
 
             const { id, stockName } = item
 
+            const stockDataObject = await stockApi.GetStocksApi(stockName)
+
             return {
                 id,
-                stockName
+                stockName,
+                stockPrice: stockDataObject.stockPrice
             }
-        })
+        }))
 
+        console.log(returnAllStocks);
         res.status(200).send(returnAllStocks)
 
     } catch (error) {
