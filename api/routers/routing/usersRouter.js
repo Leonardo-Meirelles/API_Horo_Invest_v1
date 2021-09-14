@@ -1,9 +1,11 @@
-const userController = require('../../controllers/usersController')
+const usersController = require('../../controllers/usersController')
 
 module.exports = (userRouter) => {
 
+    userRouter.route('/users')
+        .get(usersController.getUsers)
+
     userRouter.route('/user')
-        .get(userController.getUser)
-        // .delete(userControler.deleteOrder)
+        .get(usersController.getUserByEmail)
 
 }

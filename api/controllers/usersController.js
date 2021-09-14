@@ -1,56 +1,60 @@
-const user = require('../../models/index')
+const { usersModel, ordersModel } = require('../../models/index')
 
-const getUser = async (req, res, next) => {
-
+const getUsers = async (req, res, next) => {
     try{
-        const result = await user.findAll({});
-        const finalResult = result.map(item => {
+        const findAllUsers = await usersModel.findAll({})
+
+        const returnAllUsers = findAllUsers.map(item => {
+
             const { id, userName, userEmail } = item;
+
             return {
                 id,
                 userName,
                 userEmail
             }
         })
-        res.status(200).send(finalResult)
+
+        res.status(200).send(returnAllUsers)
+
     } catch (error) {
+
         throw error
     }
-};
+}
 
-const getById = async (req, res) => {
-    const { user } = req.params;
-    const result = await user.findOne({
+const getUserByEmail = async (req, res) => {
+
+    const findOneUser = await usersModel.findOne({
         where: {
-            id: req.params.id
-        }
-    });
+            userEmail: req.body.userEmail
+        },
 
-    if (!result) {
+        include: [{
+            model: ordersModel,
+            as: 'order'
+        }]
+    })
+
+    if (!findOneUser) {
+
         return res.status(404).send({
-            message: 'result not found for id ' + id
+            message: 'User not found for email: ' + req.body.userEmail
         })
     }
     
-    const {id, userName, userEmail} = result;
+    const { userName, userEmail, order } = findOneUser
 
     return res.status(200).send({
-        id,
         userName,
-        userEmail
+        userEmail,
+        order
     })
-};
-
-const deleteOrder = (req, res) => {
-    res.status(200).send({
-        ...req.params
-    })
-};
+}
 
 module.exports = {
 
-    getUser,
-    getById,
-    deleteOrder
+    getUsers,
+    getUserByEmail,
 
 }

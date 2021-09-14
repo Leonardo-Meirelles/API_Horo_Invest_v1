@@ -21,13 +21,13 @@ module.exports = (sequelize, DataTypes) => {
         }
     )
 
-    stocks.associate = (db) => {
+    // stocks.associate = (db) => {
 
-        stocks.hasMany(db.ordersModel, {
-            foreignKey: 'stockId',
-            as: 'order'
-        })
-    }
+    //     stocks.hasMany(db.ordersModel, {
+    //         foreignKey: 'stockId',
+    //         as: 'order'
+    //     })
+    // }
 
     return stocks
 }
