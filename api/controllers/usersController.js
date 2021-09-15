@@ -27,7 +27,7 @@ const getUserByEmail = async (req, res) => {
 
     const findOneUser = await usersModel.findOne({
         where: {
-            userEmail: req.body.userEmail
+            userEmail: req.params.id
         },
 
         include: [{
@@ -38,8 +38,8 @@ const getUserByEmail = async (req, res) => {
 
     if (!findOneUser) {
 
-        return res.status(404).send({
-            message: 'User not found for email: ' + req.body.userEmail
+        return res.status(400).send({
+            message: 'User not found for email: ' + req.params.id
         })
     }
     

@@ -7,9 +7,9 @@ module.exports = (userRouter) => {
     userRouter.route('/users')
         .get(usersController.getUsers)
 
-    userRouter.route('/user')
+    userRouter.route('/user/:id')
         .get(
-            validatorDTO('body', joiSchema.getUserByEmailSchema),
+            validatorDTO('params', joiSchema.getUserByEmailSchema),
             usersController.getUserByEmail
         )
 
