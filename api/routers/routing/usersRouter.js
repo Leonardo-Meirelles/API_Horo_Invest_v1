@@ -1,4 +1,6 @@
 const usersController = require('../../controllers/usersController')
+const joiSchema = require('../../utils/joiSchema')
+const validatorDTO = require('../../utils/validateMiddlewareDTO')
 
 module.exports = (userRouter) => {
 
@@ -6,6 +8,9 @@ module.exports = (userRouter) => {
         .get(usersController.getUsers)
 
     userRouter.route('/user')
-        .get(usersController.getUserByEmail)
+        .get(
+            validatorDTO('body', joiSchema.getUserByEmailSchema),
+            usersController.getUserByEmail
+        )
 
 }

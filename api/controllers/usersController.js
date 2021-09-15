@@ -19,7 +19,7 @@ const getUsers = async (req, res, next) => {
 
     } catch (error) {
 
-        throw error
+        res.status(400).send(error)
     }
 }
 

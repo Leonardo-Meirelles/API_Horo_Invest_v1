@@ -1,4 +1,6 @@
 const ordersController = require('../../controllers/ordersController')
+const joiSchema = require('../../utils/joiSchema')
+const validatorDTO = require('../../utils/validateMiddlewareDTO')
 
 module.exports = (ordersRouter) => {
 
@@ -6,6 +8,9 @@ module.exports = (ordersRouter) => {
         .get(ordersController.getOrders)
 
     ordersRouter.route('/orders/:idorder/delete')
-        .delete(ordersController.deleteOrder)
+        .delete(
+            validatorDTO('params', joiSchema.orderIdSchema),
+            ordersController.deleteOrder
+        )
 
 }

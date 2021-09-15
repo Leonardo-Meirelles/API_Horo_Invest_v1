@@ -1,8 +1,7 @@
-const validateMiddlewareDto = (context, schema) => {
+module.exports = (context, schema) => {
 
     return async (req, res, next) => {
 
-        //allowUnknown?
         const result = schema.validate(req[context], { abortEarly: false })
 
         if (result.error) {

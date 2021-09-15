@@ -1,4 +1,6 @@
 const stocksController = require('../../controllers/stocksController')
+const joiSchema = require('../../utils/joiSchema')
+const validatorDTO = require('../../utils/validateMiddlewareDTO')
 
 module.exports = (stocksRouter) => {
 
@@ -6,9 +8,16 @@ module.exports = (stocksRouter) => {
         .get(stocksController.getStocks)
 
     stocksRouter.route('/stocks')
-        .post(stocksController.postStocks)
+        .post(
+            validatorDTO('body', joiSchema.postStocksSchema),
+            stocksController.postStocks
+        )
 
     stocksRouter.route('/stocks/:idstock/order')
-        .post(stocksController.postOrder)
+        .post(
+            validatorDTO('params', joiSchema.stockIdSchema),
+            validatorDTO('body', joiSchema.postOrderSchema),
+            stocksController.postOrder
+        )
 
 }
