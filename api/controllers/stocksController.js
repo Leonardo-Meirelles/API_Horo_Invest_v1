@@ -18,7 +18,6 @@ const getStocks = async (req, res, next) => {
             }
         }))
 
-        console.log(returnAllStocks);
         res.status(200).send(returnAllStocks)
 
     } catch (error) {
