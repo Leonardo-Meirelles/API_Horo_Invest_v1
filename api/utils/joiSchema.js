@@ -25,7 +25,7 @@ const postStocksSchema = Joi.object({
 
 const getUserByEmailSchema = Joi.object({
 
-    id: Joi.string().email().required(),
+    userEmail: Joi.string().email().required(),
 })
 
 module.exports = { 
