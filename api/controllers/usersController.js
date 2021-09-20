@@ -27,7 +27,7 @@ const getUserByEmail = async (req, res) => {
 
     const findOneUser = await usersModel.findOne({
         where: {
-            userEmail: req.params.id
+            userEmail: req.params.userEmail
         },
 
         include: [{
