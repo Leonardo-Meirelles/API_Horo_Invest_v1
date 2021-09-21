@@ -4,8 +4,11 @@ const postOrderSchema = Joi.object({
 
     userName: Joi.string().required(),
     userEmail: Joi.string().email().required(),
-    orderQuantity: Joi.number().required(),
-    orderPrice: Joi.number().required(),
+    orderData: Joi.array().items({
+        orderQuantity: Joi.number().required(),
+        orderPrice: Joi.number().required(),
+        total: Joi.number(),
+    })
 })
 
 const orderIdSchema = Joi.object({

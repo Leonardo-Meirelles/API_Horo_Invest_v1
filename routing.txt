@@ -25,6 +25,7 @@
 
 /user {
 
+
     .get (working) => This will SELECT the USER info (userName, userEmail and order) of one user, using his email,
                       FROM the USERS table
 }

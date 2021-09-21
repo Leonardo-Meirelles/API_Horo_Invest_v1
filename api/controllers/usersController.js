@@ -1,4 +1,4 @@
-const { usersModel, ordersModel } = require('../../models/index')
+const { usersModel, ordersModel, stocksModel } = require('../../models/index')
 
 const getUsers = async (req, res, next) => {
     try{
@@ -32,7 +32,11 @@ const getUserByEmail = async (req, res) => {
 
         include: [{
             model: ordersModel,
-            as: 'order'
+            as: 'order',
+            include: [{
+                model: stocksModel,
+                as: 'stock',
+            }]
         }]
     })
 

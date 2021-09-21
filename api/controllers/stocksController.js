@@ -18,7 +18,6 @@ const getStocks = async (req, res, next) => {
             }
         }))
 
-        console.log(returnAllStocks);
         res.status(200).send(returnAllStocks)
 
     } catch (error) {
@@ -52,8 +51,10 @@ const postStocks = async (req, res, next) => {
 
 const postOrder = async (req, res, next) => {
 
+
+
     const { idstock } = req.params
-    const { userName, userEmail, orderQuantity, orderPrice } = req.body
+    const { userName, userEmail, orderData } = req.body
 
     const findStock = await stocksModel.findOne({
         where: {
@@ -83,19 +84,26 @@ const postOrder = async (req, res, next) => {
     } else {
 
         user = findUser
-
     }
 
-    const order = await ordersModel.create({
-        userId: user.id,
-        stockId: findStock.id,
-        orderQuantity,
-        orderPrice
-    })
+    try {
+        const orderDataMap = orderData.map(async item => {
 
-    return res.status(200).send({
-        message: 'Order successfully created.'
-    })
+            const order = await ordersModel.create({
+                userId: user.id,
+                stockId: findStock.id,
+                orderQuantity: item.orderQuantity,
+                orderPrice: item.orderPrice,
+            })
+        })
+        
+        return res.status(200).send({
+            message: 'Order successfully created.'
+        })
+    } catch (err) {
+
+        throw err
+    }
 }
 
 module.exports = {
