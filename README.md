@@ -5,12 +5,12 @@ This API is the back-end of our fictitious company Horo, that operates on the br
 In this project we also tryed to code in pairs, simulating a company, using merge requests and code review.
 
 We made this project during the Infnet Fullsatck (MERN) Bootcamp :) 
+
 ## Authors
 
 - Leonardo Meirelles
 - Giulia Alziguir
 
-  
 ## Contact me: Leonardo Meirelles
 
 [![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/leomeirelles/)
@@ -87,9 +87,9 @@ Sequelize ORM and Joi Validator (didn't found a badge, sorry)
 Clone the project
 
 ```bash
-  git clone https://github.com/Leonardo-Meirelles/
+  git clone https://github.com/Leonardo-Meirelles/API_Horo_Invest-Project-2
                                 or
-  git clone https://gitlab.com/leonardo.dmeirelles/
+  git clone https://gitlab.com/leonardo.dmeirelles/API_Horo_Invest-Project-2
 ```
 
 Go to the project directory
