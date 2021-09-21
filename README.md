@@ -1,6 +1,3 @@
-
-
-
 # API-HORO
 
 This API is the back-end of our fictitious company Horo, that operates on the brazillian stock market providing stocks data from the day before. 
