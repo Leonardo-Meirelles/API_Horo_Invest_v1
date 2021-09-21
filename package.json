@@ -1,5 +1,7 @@
 {
   "name": "api_horo_invest-v1",
+  "author": "Leonardo Meireles",
+  "contributors":["Giulia Alzuguir"],
   "version": "1.0.0",
   "description": "Infnet Fullstack Bootcamp - Project 2",
   "main": "index.js",
@@ -8,8 +10,6 @@
     "nodemon": "nodemon ./index.js",
     "create-db": "npx sequelize db:create"
   },
-  "author": "Leonardo Meireles",
-  "contributors":["Giulia Alzuguir"],
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.4",
