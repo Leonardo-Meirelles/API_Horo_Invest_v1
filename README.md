@@ -9,7 +9,7 @@ We made this project during the Infnet Fullsatck (MERN) Bootcamp :)
 ## Authors
 
 - Leonardo Meirelles
-- Giulia Alziguir
+- Giulia Alzuguir
 
 ## Contact me: Leonardo Meirelles
 
