@@ -4,7 +4,7 @@ This API is the back-end of our fictitious company Horo, that operates on the br
 
 In this project we also tryed to code in pairs, simulating a company, using merge requests and code review.
 
-We made this project during the Infnet Fullsatck (MERN) Bootcamp :) 
+This project is of our own, and we made it during the Infnet Fullsatck (MERN) Bootcamp :)  
 
 ## Authors
 
