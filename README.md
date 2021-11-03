@@ -89,7 +89,7 @@ Sequelize ORM and Joi Validator (didn't found a badge, sorry)
 Clone the project
 
 ```bash
-  git clone https://github.com/Leonardo-Meirelles/API_Horo_Invest-Project-2
+  git clone https://github.com/Leonardo-Meirelles/API_Horo_Invest_v1.git
                                 or
   git clone https://gitlab.com/leonardo.dmeirelles/API_Horo_Invest-Project-2
 ```
